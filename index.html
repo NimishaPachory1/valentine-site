@@ -2,32 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Will You Be My Valentine?</title>
-
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BooBoo Will you be my Valentine?</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<!-- Celebration overlay -->
-<div id="celebrate" class="overlay hidden" aria-hidden="true">
-  <div class="overlay-card">
-    <h2>Correct choice 😌💘</h2>
-    <img id="celebrateGif" alt="Celebration gif" />
-    <p id="celebrateCaption"></p>
-    <button id="closeOverlay" class="secondary">Close</button>
-  </div>
-</div>
 <body>
+  <main class="card">
+    <!-- Daisy icon -->
+    <img class="icon" src="daisy.jpg" alt="Daisy" />
 
-  <div class="card">
-    <h1>💖 Evan 💖</h1>
-    <p>Will you be my Valentine?</p>
+    <h1 id="question">BooBoo will you be my valentine?</h1>
 
     <div class="buttons">
-      <button id="yesBtn">Yes</button>
-      <button id="noBtn">No</button>
+      <button id="noBtn" type="button">No</button>
+      <button id="yesBtn" type="button">Yes</button>
     </div>
 
-    <p id="message"></p>
+    <p class="hint">“No” seems a bit shy 😈</p>
+  </main>
+
+  <!-- Celebration overlay (hidden until Yes) -->
+  <div id="celebration" class="celebration hidden" aria-hidden="true">
+    <div class="celebration-inner">
+      <p class="yay">YAY 💖</p>
+
+      <!-- Put your GIF URL on the next line (see script.js too) -->
+      <img id="celebrationGif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXU2bmRoaHE5YnEzYjc4M3VtN3U0ZGs2cGkwenF6Yms5NnM0OWEzNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Na33dsU2umStO/giphy.gif" alt="Celebration GIF" />
+
+      <button id="closeCelebration" type="button">ok ok 💅</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
