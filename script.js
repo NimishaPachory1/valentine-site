@@ -1,71 +1,44 @@
-const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
 
-// Overlay elements
-const overlay = document.getElementById("celebrate");
-const celebrateGif = document.getElementById("celebrateGif");
-const celebrateCaption = document.getElementById("celebrateCaption");
-const closeOverlay = document.getElementById("closeOverlay");
+const celebration = document.getElementById("celebration");
+const celebrationGif = document.getElementById("celebrationGif");
+const closeCelebration = document.getElementById("closeCelebration");
 
-// Put your gif choices here (pick your favorite)
-const gifOptions = [
-  {
-    url: "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif",
-    caption: "You just made an excellent life decision."
-  },
-  {
-    url: "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",
-    caption: "Welcome to the ‘Yes’ club. Membership: elite."
-  },
-  {
-    url: "https://media.giphy.com/media/26u4lOMA8JKSnL9Uk/giphy.gif",
-    caption: "I knew you had taste."
-  }
-];
+/**
+ * PUT YOUR GIPHY GIF URL HERE
+ * Use a direct .gif link OR a normal https link that ends with .gif
+ * Example: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif"
+ */
+const CELEBRATION_GIF_URL = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXU2bmRoaHE5YnEzYjc4M3VtN3U0ZGs2cGkwenF6Yms5NnM0OWEzNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Na33dsU2umStO/giphy.gif";
 
-// Make NO run away more dramatically
 function moveNoButton() {
-  const padding = 12;
+  const padding = 20;
+
+  // Make it absolutely positioned the first time it moves
+  noBtn.style.position = "absolute";
+
   const maxX = window.innerWidth - noBtn.offsetWidth - padding;
   const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
-  const x = Math.max(padding, Math.floor(Math.random() * maxX));
-  const y = Math.max(padding, Math.floor(Math.random() * maxY));
+  const x = Math.floor(Math.random() * maxX) + padding;
+  const y = Math.floor(Math.random() * maxY) + padding;
 
-  // Put it somewhere random
-  noBtn.style.position = "fixed";
   noBtn.style.left = `${x}px`;
   noBtn.style.top = `${y}px`;
-
-  // Add a little spin for drama
-  const spin = (Math.random() * 16 - 8).toFixed(1);
-  noBtn.style.transform = `rotate(${spin}deg) scale(1.02)`;
 }
 
 noBtn.addEventListener("mouseenter", moveNoButton);
-noBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  moveNoButton();
+noBtn.addEventListener("click", moveNoButton);
+
+yesBtn.addEventListener("click", () => {
+  celebrationGif.src = CELEBRATION_GIF_URL;
+  celebration.classList.remove("hidden");
+  celebration.setAttribute("aria-hidden", "false");
 });
 
-// YES shows overlay + gif
-yesBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const pick = gifOptions[Math.floor(Math.random() * gifOptions.length)];
-  celebrateGif.src = pick.url;
-  celebrateCaption.textContent = pick.caption;
-
-  overlay.classList.remove("hidden");
-  overlay.setAttribute("aria-hidden", "false");
-
-  // Optional: disable buttons after yes
-  yesBtn.disabled = true;
-  noBtn.disabled = true;
-});
-
-// Close overlay
-closeOverlay.addEventListener("click", () => {
-  overlay.classList.add("hidden");
-  overlay.setAttribute("aria-hidden", "true");
+closeCelebration.addEventListener("click", () => {
+  celebration.classList.add("hidden");
+  celebration.setAttribute("aria-hidden", "true");
+  celebrationGif.src = ""; // stop GIF reload / soundless reset
 });
